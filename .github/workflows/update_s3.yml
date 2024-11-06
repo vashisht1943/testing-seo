@@ -3,6 +3,7 @@ name: Update S3 Pages
 on:
   schedule:
     - cron: '0 * * * *'  # Runs every hour on the hour
+  workflow_dispatch:      # Allows manual trigger in GitHub
 
 jobs:
   update-s3-job:
@@ -22,13 +23,11 @@ jobs:
 
       - name: Run Puppeteer script
         env:
-          env:
-            MY_AWS_REGION: ${{ secrets.MY_AWS_REGION }}
-            MY_AWS_ACCESS_KEY: ${{ secrets.MY_AWS_ACCESS_KEY }}
-            MY_AWS_SECRET_ACCESS_KEY: ${{ secrets.MY_AWS_SECRET_ACCESS_KEY }}
-            S3_BUCKET_NAME: ${{ secrets.S3_BUCKET_NAME }}
-            BASE_URL: ${{ secrets.BASE_URL }}
-            BASE_API_URL: ${{ secrets.BASE_API_URL }}
-            TENANT_ID: ${{ secrets.TENANT_ID }}
-
-        run: node src/s3_update.js  # Adjust path if necessary
+          MY_AWS_REGION: ${{ secrets.MY_AWS_REGION }}
+          MY_AWS_ACCESS_KEY: ${{ secrets.MY_AWS_ACCESS_KEY }}
+          MY_AWS_SECRET_ACCESS_KEY: ${{ secrets.MY_AWS_SECRET_ACCESS_KEY }}
+          S3_BUCKET_NAME: ${{ secrets.S3_BUCKET_NAME }}
+          BASE_URL: ${{ secrets.BASE_URL }}
+          BASE_API_URL: ${{ secrets.BASE_API_URL }}
+          TENANT_ID: ${{ secrets.TENANT_ID }}
+        run: node src/s3_update.js
