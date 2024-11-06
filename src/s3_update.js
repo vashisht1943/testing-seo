@@ -141,56 +141,56 @@ async function save_html_content(browser, page_url, route) {
 
 // // Run the main function
 // main().catch((error) => console.error("Script failed with error:", error));
-import fs from 'fs';
-import path from 'path';
+// import fs from 'fs';
+// import path from 'path';
 
-function createHtmlFile() {
-  // Get the current date and time in UTC
-  const now = new Date();
+// function createHtmlFile() {
+//   // Get the current date and time in UTC
+//   const now = new Date();
 
-  // Convert to IST by adding 5 hours and 30 minutes
-  const istOffset = 5.5 * 60 * 60 * 1000; // 5 hours 30 minutes in milliseconds
-  const istTime = new Date(now.getTime() + istOffset);
+//   // Convert to IST by adding 5 hours and 30 minutes
+//   const istOffset = 5.5 * 60 * 60 * 1000; // 5 hours 30 minutes in milliseconds
+//   const istTime = new Date(now.getTime() + istOffset);
 
-  // Format IST time for the file name (HH-MM-SS only)
-  const hours = String(istTime.getUTCHours()).padStart(2, '0');
-  const minutes = String(istTime.getUTCMinutes()).padStart(2, '0');
-  const seconds = String(istTime.getUTCSeconds()).padStart(2, '0');
-  const timestamp = `${hours}-${minutes}`;
+//   // Format IST time for the file name (HH-MM-SS only)
+//   const hours = String(istTime.getUTCHours()).padStart(2, '0');
+//   const minutes = String(istTime.getUTCMinutes()).padStart(2, '0');
+//   const seconds = String(istTime.getUTCSeconds()).padStart(2, '0');
+//   const timestamp = `${hours}-${minutes}`;
 
-  // Define the file name and content without year, month, or day
-  const fileName = `html_${timestamp}_IST.html`;
-  const directoryPath = path.join('.', 'html-content'); // Use relative path
+//   // Define the file name and content without year, month, or day
+//   const fileName = `html_${timestamp}_IST.html`;
+//   const directoryPath = path.join('.', 'html-content'); // Use relative path
   
-  const filePath = path.join(directoryPath, fileName);
+//   const filePath = path.join(directoryPath, fileName);
 
-  // Define HTML content with only time in IST
-  const htmlContent = `
-    <!DOCTYPE html>
-    <html>
-    <head>
-      <title>Timestamped HTML File</title>
-    </head>
-    <body>
-      <h1>File created at: ${hours}:${minutes}:${seconds} (IST)</h1>
-    </body>
-    </html>
-  `;
+//   // Define HTML content with only time in IST
+//   const htmlContent = `
+//     <!DOCTYPE html>
+//     <html>
+//     <head>
+//       <title>Timestamped HTML File</title>
+//     </head>
+//     <body>
+//       <h1>File created at: ${hours}:${minutes}:${seconds} (IST)</h1>
+//     </body>
+//     </html>
+//   `;
 
-  // Check if directory exists, create if it doesn't
-  if (!fs.existsSync(directoryPath)) {
-    fs.mkdirSync(directoryPath);
-  }
-  upload_to_s3(htmlContent, fileName)
-  // Write the HTML content to the file
-  fs.writeFile(filePath, htmlContent, (err) => {
-    if (err) {
-      console.error("Error creating HTML file:", err);
-    } else {
-      console.log("HTML file created:", fileName);
-    }
-  });
-}
+//   // Check if directory exists, create if it doesn't
+//   if (!fs.existsSync(directoryPath)) {
+//     fs.mkdirSync(directoryPath);
+//   }
+//   upload_to_s3(htmlContent, fileName)
+//   // Write the HTML content to the file
+//   fs.writeFile(filePath, htmlContent, (err) => {
+//     if (err) {
+//       console.error("Error creating HTML file:", err);
+//     } else {
+//       console.log("HTML file created:", fileName);
+//     }
+//   });
+// }
 
-// Call the function to create the file
-createHtmlFile();
+// // Call the function to create the file
+// createHtmlFile();
