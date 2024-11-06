@@ -2,7 +2,7 @@ name: Update S3 Pages
 
 on:
   schedule:
-    - cron: '0 * * * *'  # Runs every hour on the hour
+    - cron: '* * * * *'  # Runs every hour on the hour
   workflow_dispatch:      # Allows manual trigger in GitHub
 
 jobs:
